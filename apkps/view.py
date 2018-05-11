@@ -39,7 +39,13 @@ def uploadhole(request):
         packagename = request.POST.get('packagename')
         hashcode = request.POST.get('hashcode')
         # 调用java进行合并的pmap逻辑
-        import os
+        cmd = 'java -jar E:/apps/apkps/apkps/pmap.jar '"{packagename}"' '"{hashcode}"' '"{pmapser}"''.format(
+            packagename=packagename,
+            hashcode=hashcode,
+            pmapser=cfg.pmapdir,
+        )
+        'java -jar E:/apps/apkps/apkps/pmap.jar com.disney.chukong.WMW 8b2baefaf4af3db001bcd446c5dc0a04 D:/phpStudy/WWW/app_download_fragment/pmap.ser'
+        result = os.system(cmd)
         savedir = cfg.dir + '/' + packagename + '/' + hashcode + '/'
         if not os.path.exists(savedir):
             os.makedirs(savedir)
