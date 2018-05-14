@@ -8,7 +8,7 @@ from apkps import cfg
 
 def apk_list(request):
     list = []
-    for root, dirs, files in os.walk(cfg.dir):
+    for root, dirs, files in os.walk(cfg.apkdir):
         for file in files:
             if os.path.splitext(file)[1] == '.apk':
                 list.append(file)
@@ -24,7 +24,7 @@ def downloadapk(request):
     apk = request.GET.get("apkname")
     if None == apk:
         apk = 'base.7z'
-    dir = cfg.dir
+    dir = cfg.apkdir
     file = open(dir + apk, 'rb')
     response = HttpResponse(file)
     response['Content-Type'] = 'application/octet-stream'
